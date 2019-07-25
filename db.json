@@ -1,5 +1,5 @@
 {
-	"id": 1,
+	"profile": {
 	"name": "Tom",
 	"avatar": "",
 	"post": [{
@@ -16,4 +16,5 @@
 			"likes": 0
 		}]
 	}]
+		}
 }
