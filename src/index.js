@@ -9,7 +9,10 @@ function loadprofile(){
     .then(res => res.json())
     .then(data => data)
 }
-
+function updatePostLikes(){
+    return fetch(API_URL)
+    .then(res => res)
+}
 function createPageEl(data){
     console.log(data)
     buildPortfolioHeader(data)
@@ -21,22 +24,28 @@ function buildPortfolioHeader(data){
     let headerH1 = document.getElementById('name')
     let headerImg = document.getElementById('avatar')
     headerH1.innerText = data.name
-    headerImg.innerText = data.avatar
+    headerImg.src = data.avatar
 }
 function buildPosts(post){
     console.log(post.content)
     let postDiv = document.createElement('div')
     postDiv.id = 'single-post-container'
+
     let postContent = document.createElement('h3')
     postContent.innerText = post.content
+    
     //add event listener to make update
     let postlikeButton = document.createElement('button')
-    postlikeButton.innerText = post.likes
+    postlikeButton.innerText = `Likes: ${post.likes}`
+    postlikeButton.addEventListener('click',updatePostLikes)
     let portfolio = document.querySelector('section')
     portfolio.appendChild(postDiv)
+
     let postContainer = document.getElementById('single-post-container')
+    
     postContainer.appendChild(postContent)
     postContainer.appendChild(postlikeButton)
+   
     post.comments.forEach(comment => buildComments(comment))
 }
 
@@ -45,8 +54,9 @@ function buildComments(comment){
     commentDiv.id = 'comment-container'
     let commentContent = document.createElement('p')
     commentContent.innerText = comment.content
+    //needs event listener 
     let commentLikes = document.createElement('button')
-    commentLikes.innerHTML = comment.likes
+    commentLikes.innerHTML = `Likes: ${comment.likes}`
     let postContainer = document.getElementById('single-post-container')
     postContainer.appendChild(commentDiv)
     let commentContainer = document.getElementById('comment-container')
@@ -58,6 +68,5 @@ function main(){
 }
 document.addEventListener('DOMContentLoaded', () => {
     console.log('%c DOM Content Loaded and Parsed!', 'color: magenta')
-
     main();
 })
