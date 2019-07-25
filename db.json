@@ -1,0 +1,19 @@
+{
+	"id": 1,
+	"name": "Tom",
+	"avatar": "",
+	"post": [{
+		"id": 2,
+		"content": "first post!",
+		"likes": 2,
+		"comments": [{
+			"id": 1,
+			"content": "hello!",
+			"likes": 0
+		}, {
+			"id": 5941,
+			"content": "hi!",
+			"likes": 0
+		}]
+	}]
+}
